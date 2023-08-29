@@ -11,33 +11,33 @@ const ParentComponent: React.FC = () => {
   return (
     <div className="w-full h-full">
       <div className="w-full xs:w-2/3 sm:w-1/2 lg:w-1/3 xl:w-1/4 h-full mx-auto flex items-center overflow-hidden relative">
-        <motion.div
-          initial={{ x: '-100%' }}
-          animate={{ x: showInitialView ? '0%' : '-100%' }}
-          transition={{ duration: 0.5 }}
-          className="w-full absolute bg-white"
-          style={{ left: 0 }}
-        >
-          <SignIn
-            initialValues={formValues.signIn}
-            move={(signIn: ISignInData) => {
-              setFormValues((prev) => ({ ...prev, signIn }))
-              setShowInitialView(false)
-            }}
-          />
-        </motion.div>
-        <motion.div
-          className="w-full absolute bg-white"
-          initial={{ x: '100%' }}
-          animate={{ x: showInitialView ? '100%' : '0%' }}
-          transition={{ duration: 0.5 }}
-          style={{ left: 0 }}
-        >
-          <OTPInput
-            data={formValues.signIn}
-            move={() => setShowInitialView(true)}
-          />
-        </motion.div>
+        <div className="w-full shadow-lg bg-white shadow-outline whitespace-nowrap">
+          <motion.div
+            className="inline-block w-full"
+            initial={{ x: '-100%', y: 0 }}
+            animate={{ x: showInitialView ? '0%' : '-100%' }}
+            transition={{ duration: 0.5 }}
+          >
+            <SignIn
+              initialValues={formValues.signIn}
+              move={(signIn: ISignInData) => {
+                setFormValues((prev) => ({ ...prev, signIn }))
+                setShowInitialView(false)
+              }}
+            />
+          </motion.div>
+          <motion.div
+            className="inline-block w-full"
+            initial={{ x: '100%', y: 0 }}
+            animate={{ x: showInitialView ? '0%' : '-100%' }}
+            transition={{ duration: 0.5 }}
+          >
+            <OTPInput
+              data={formValues.signIn}
+              move={() => setShowInitialView(true)}
+            />
+          </motion.div>
+        </div>
       </div>
     </div>
   )

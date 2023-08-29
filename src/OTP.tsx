@@ -41,7 +41,7 @@ const OTPInput = ({ data, move }: IProps) => {
     <div className="flex flex-col px-6 pt-12 pb-24">
       <BackButton onClickCallback={move} />
       <Heading />
-      <p className="text-center text-sm mt-5 font-500 leading-6">
+      <p className="text-center text-sm mt-5 font-500 leading-6 whitespace-normal">
         Enter the one-time access code sent to the email you entered
       </p>
       <p className="text-center text-sm mt-5 text-gray-500">

@@ -4,7 +4,7 @@ import { Heading } from './components/Heading'
 import { ISignInData } from './App.interface'
 
 interface IProps {
-  initialValues: { email: string; password: string }
+  initialValues: ISignInData
   move: (values: ISignInData) => void
 }
 const SignIn = ({ move, initialValues }: IProps) => {
@@ -14,16 +14,17 @@ const SignIn = ({ move, initialValues }: IProps) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValues((prev) => ({ ...prev, [e.target.name]: e.target.value }))
   }
-  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setLoading(true)
-    setTimeout(() => {
-      const formData = new FormData(e.target as HTMLFormElement)
-      const email = formData.get('email') as string
-      const password = formData.get('password') as string
-      move({ email, password })
-      setLoading(false)
-    }, 800)
+
+    await new Promise((resolve) => setTimeout(resolve, 800))
+
+    const formData = new FormData(e.target as HTMLFormElement)
+    const email = formData.get('email') as string
+    const password = formData.get('password') as string
+    move({ email, password })
+    setLoading(false)
   }
 
   return (

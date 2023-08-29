@@ -2,6 +2,7 @@ import { ChangeEvent, useRef } from 'react'
 import { Assistance } from './components/Assistance'
 import { Heading } from './components/Heading'
 import { ISignInData } from './App.interface'
+import { BackButton } from './components/BackButton'
 
 interface IProps {
   data: ISignInData
@@ -38,20 +39,7 @@ const OTPInput = ({ data, move }: IProps) => {
 
   return (
     <div className="flex flex-col px-6 pt-12 pb-24">
-      <button
-        onClick={move}
-        className="font-bold p-4 pl-0 absolute rounded inline-flex items-center"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-4 h-4 mr-2 transform scale-x-[-1]"
-          viewBox="0 0 10 16"
-        >
-          <path fill="#000" d="M10 8l-8 8-1.5-1.5L7 8 .5 1.5 2 0z" />
-        </svg>
-        <span className="text-gray-500 font-normal">Back</span>
-      </button>
-
+      <BackButton onClickCallback={move} />
       <Heading />
       <p className="text-center text-sm mt-5 font-500 leading-6">
         Enter the one-time access code sent to the email you entered
